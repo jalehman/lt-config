@@ -13,7 +13,7 @@
      ;; The app tag is kind of like global scope. You assign behaviors that affect
      ;; all of Light Table here
      :app [(:lt.objs.style/set-skin "dark")
-           (:lt.objs.app/set-default-zoom-level -0.5)
+           ;; (:lt.objs.app/set-default-zoom-level -0.5)
            :lt.objs.menu/create-menu
            :lt.objs.menu/set-menu]
 
