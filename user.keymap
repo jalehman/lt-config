@@ -1,0 +1,57 @@
+;; User keymap
+;; -----------------------------
+;; Keymaps are stored as a set of diffs that are merged together together
+;; to create the final set of keys. You can modify these diffs to either add
+;; or subtract bindings.
+;;
+;; Like behaviors, keys are bound by tag. When objects with those tags are active
+;; the key bindings are live. Keys can be bound to any number of Light Table commands,
+;; allowing you the flexibility to execute multiple operations together. To see a list
+;; of all the commands you can execute, start typing a word related to the thing you
+;; want to do in between the square brackets (e.g. type "editor").
+
+{:+ {:app {"ctrl-n" [:lt.plugins.workspace-nav/navigate-south]
+           "ctrl-p" [:lt.plugins.workspace-nav/navigate-north]
+           "alt-v"  [:lt.plugins.workspace-nav/navigate-top]
+           "ctrl-v" [:lt.plugins.workspace-nav/navigate-bottom]
+           "ctrl-g" [:escape-navigate]
+           "ctrl-shift-t" [:workspace.show]
+           "ctrl-shift-c" [:toggle-console]
+           "ctrl-shift-t" [:workspace.show]
+           "ctrl-shift-a" [:show-add-connection]
+           "alt-x" [:show-commandbar-transient]
+           "ctrl-c t" [:lt.plugins.opener/open-terminal-in-active-workspace]}
+     :workspace {"ctrl-g" [:workspace.show]}
+     :filter-list.input {"ctrl-n" [(:filter-list.input.move-selection 1)],
+                         "esc" [(:filter-list.input.escape! :force)],
+                         "ctrl-g" [(:filter-list.input.escape! :force)],
+                         "enter" [:filter-list.input.select!],
+                         "ctrl-p" [(:filter-list.input.move-selection -1)]}
+     :editor {"alt-w" [:editor.watch.watch-selection]
+              "alt-shift-w" [:editor.watch.unwatch]
+              "ctrl-alt-shift-c" [:clear-inline-results]
+              "ctrl-c n" [:smart-indent-selection]}
+     :editor.keys.normal {"ctrl-g" [:editor.selection.clear
+                                    :auto-complete.remove
+                                    (:emacs.keymap-cmd "Ctrl-G")]}
+     ;; Thanks @cldwalker! https://github.com/cldwalker/ltfiles/blob/master/settings/user.keymap
+     :editor.clojure {"alt-p" [(:eval.custom "(with-out-str (clojure.pprint/write __SELECTION__ :suppress-namespaces false :dispatch clojure.pprint/code-dispatch))" {:result-type :inline :verbatim true})]
+                      "alt-shift-p" [(:eval.custom "(with-out-str (clojure.pprint/write __SELECTION__ :suppress-namespaces false :dispatch clojure.pprint/code-dispatch))" {:result-type :replace :verbatim true})]
+                      "alt-shift-m" [(:eval.custom "(with-out-str (clojure.pprint/write (macroexpand-1 '__SELECTION__) :suppress-namespaces false :dispatch clojure.pprint/code-dispatch))" {:result-type :inline :verbatim true})]
+                      "alt-b" [(:eval.custom "(with-out-str (time (do __SELECTION__)))" {:result-type :inline :verbatim true})]
+                      ;; "alt-r" [(:eval.custom "(clojure.test/run-tests)" {:result-type :statusbar})]
+                      ;; "alt-shift-b" [(:eval.custom "(do (require '[criterium.core]) (with-out-str (criterium.core/bench (do __SELECTION__))))" {:result-type :inline :verbatim true})]
+                      ;; watches
+                      "alt-shift-t" [(:editor.watch.custom-watch-selection "(let [result (do __SELECTION__)] (prn __SELECTION*__ result) __|result|__ result)" {})]
+                      "alt-t" [(:editor.watch.custom-watch-selection "(let [start (java.lang.System/nanoTime)
+                                                                     res (do __SELECTION__)]
+                                                                     __|(str (float (/ (- (java.lang.System/nanoTime) start) 1000000)) \" ms\")|__
+                                                                     res)" {:class "timed" :verbatim true})]}
+     :editor.keys.normal.clojure {"backspace" [:paredit-plus.backward-delete]
+                                  "ctrl-d" [:paredit-plus.forward-delete]}
+     :editor.cljs {"alt-p" [(:eval.custom "(.log js/console __SELECTION__)" {:result-type :inline :verbatim true})]
+                   "alt-shift-p" [(:eval.custom "(prn __SELECTION__)" {:result-type :inline :verbatim true})]}
+     :editor.keys.normal.cljs {"backspace" [:paredit-plus.backward-delete]
+                               "ctrl-d" [:paredit-plus.forward-delete]}}
+ :- {:app {"ctrl-n" [:new-file]}
+     :editor {"ctrl-l" [:goto-line]}}}
