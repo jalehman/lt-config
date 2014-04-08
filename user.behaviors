@@ -14,23 +14,32 @@
      ;; all of Light Table here
      :app [(:lt.objs.style/set-skin "dark")
            ;; (:lt.objs.app/set-default-zoom-level -0.5)
-           :lt.objs.menu/create-menu
-           :lt.objs.menu/set-menu]
+           ]
 
      ;; Theoretically hide the menu...not actually working though.
-     :window [:lt.objs.menu/set-menu]
+
 
      ;; The editor tag is applied to all editors
      :editor [:lt.objs.editor/no-wrap
-              (:lt.objs.style/set-theme "default")
+              (:lt.objs.style/set-theme "borealis")
               :lt.plugins.emacs/activate-emacs
               (:lt.plugins.photon/set-directories
                [:plugins "~/Projects/fm" "~/Projects/fmspider"])
               (:lt.plugins.reflow/set-width 80)]
 
      ;; Here we can add behaviors to just clojure editors
-     :editor.clojure [(:lt.objs.langs.clj/print-length 1000)]}
+     :editor.clojure [(:lt.objs.langs.clj/print-length 1000)
+                      :lt.plugins.rainbow/rainbow-parens
+                      (:lt.object/add-tag :editor.keys.normal.clojure)]
+
+     :editor.cljs [:lt.plugins.rainbow/rainbow-parens
+                   (:lt.object/add-tag :editor.keys.normal.clojure)]}
 
  ;; You can use the subtract key to remove behavior that may get added by
  ;; another diff
- :- {:app [:lt.objs.intro/show-intro]}}
+ :- {:app [:lt.objs.intro/show-intro
+           :lt.objs.menu/create-menu
+           :lt.objs.menu/set-menu]
+     :editor [:lt.plugins.auto-complete/auto-show-on-input]
+     :window [:lt.objs.menu/set-menu]
+     }}
