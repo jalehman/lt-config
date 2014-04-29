@@ -10,21 +10,14 @@
 ;; brackets (e.g. "theme").
 
 {:+ {
-     ;; The app tag is kind of like global scope. You assign behaviors that affect
-     ;; all of Light Table here
-     :app [(:lt.objs.style/set-skin "dark")
-           ;; (:lt.objs.app/set-default-zoom-level -0.5)
-           ]
-
-     ;; Theoretically hide the menu...not actually working though.
-
+     :app [(:lt.objs.style/set-skin "dark")]
 
      ;; The editor tag is applied to all editors
      :editor [:lt.objs.editor/no-wrap
               (:lt.objs.style/set-theme "borealis")
               :lt.plugins.emacs/activate-emacs
               (:lt.plugins.photon/set-directories
-               [:plugins "~/Projects/fm" "~/Projects/fmspider"])
+               [:plugins "~/Projects/fm" "~/Projects/fmspider" "~/Projects/om-dataview"])
               (:lt.plugins.reflow/set-width 80)]
 
      ;; Here we can add behaviors to just clojure editors
@@ -35,11 +28,8 @@
      :editor.cljs [:lt.plugins.rainbow/rainbow-parens
                    (:lt.object/add-tag :editor.keys.normal.clojure)]}
 
- ;; You can use the subtract key to remove behavior that may get added by
- ;; another diff
  :- {:app [:lt.objs.intro/show-intro
            :lt.objs.menu/create-menu
            :lt.objs.menu/set-menu]
      :editor [:lt.plugins.auto-complete/auto-show-on-input]
-     :window [:lt.objs.menu/set-menu]
-     }}
+     :window [:lt.objs.menu/set-menu]}}
