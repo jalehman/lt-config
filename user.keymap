@@ -18,7 +18,7 @@
            "ctrl-shift-t" [:workspace.show]
            "ctrl-shift-c" [:toggle-console]
            "ctrl-shift-t" [:workspace.show]
-           "ctrl-shift-a" [:show-add-connection]
+           "ctrl-shift-a" [:show-connect]
            "alt-x" [:show-commandbar-transient]
            "ctrl-c t" [:lt.plugins.opener/open-terminal-in-active-workspace]
            "ctrl-x r" [:refresh-connected-browser]
