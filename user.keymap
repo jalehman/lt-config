@@ -49,7 +49,7 @@
      ;; Thanks @cldwalker! https://github.com/cldwalker/ltfiles/blob/master/settings/user.keymap
      :editor.clojure {"ctrl-shift-k" [:paredit-plus.kill]
                       "alt-shift-9" [:paredit-plus.wrap-round]
-                      "alt-{" [:paredit-plus.wrap-curly]
+                      "alt-shift-[" [:paredit-plus.wrap-curly]
                       "alt-[" [:paredit-plus.wrap-square]
                       "alt-j" [:paredit-plus.join-sexps]
                       "ctrl-shift-left" [:paredit.grow.left]
@@ -81,7 +81,7 @@
                    "alt-shift-p" [(:eval.custom "(prn __SELECTION__)" {:result-type :inline :verbatim true})]
                    "ctrl-shift-k" [:paredit-plus.kill]
                    "alt-shift-9" [:paredit-plus.wrap-round]
-                   "alt-{" [:paredit-plus.wrap-curly]
+                   "alt-shift-[" [:paredit-plus.wrap-curly]
                    "alt-[" [:paredit-plus.wrap-square]
                    "alt-j" [:paredit-plus.join-sexps]
                    "ctrl-shift-b" [:paredit.grow.left]
