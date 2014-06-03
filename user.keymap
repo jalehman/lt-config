@@ -45,7 +45,9 @@
               "ctrl-c n" [:smart-indent-selection]}
      :editor.keys.normal {"ctrl-g" [:editor.selection.clear
                                     :auto-complete.remove
-                                    (:emacs.keymap-cmd "Ctrl-G")]}
+                                    (:emacs.keymap-cmd "Ctrl-G")]
+                          "ctrl-shift-w" [:editor.cut]
+                          "ctrl-shift-y" [:editor.paste]}
      ;; Thanks @cldwalker! https://github.com/cldwalker/ltfiles/blob/master/settings/user.keymap
      :editor.clojure {"ctrl-shift-k" [:paredit-plus.kill]
                       "alt-shift-9" [:paredit-plus.wrap-round]

@@ -21,7 +21,7 @@
               (:lt.objs.style/set-theme "borealis")
               :lt.plugins.emacs/activate-emacs
               (:lt.plugins.photon/set-directories
-               [:plugins "~/Projects/fm" "~/Projects/fmspider" "~/Projects/om-dataview"])
+               [:plugins "~/Projects/fm" "~/Projects/fmspider"])
               (:lt.plugins.reflow/set-width 80)]
 
      ;; Here we can add behaviors to just clojure editors
